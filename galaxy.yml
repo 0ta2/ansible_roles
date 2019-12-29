@@ -1,6 +1,6 @@
 namespace: 0ta2
 name: ansible_roles
-version: 1.0.0
+version: 1.0.1
 readme: README.md
 authors:
 - 0ta2 <example@domain.com>
@@ -10,7 +10,6 @@ license:
 license_file: ''
 tags:
 - collection
-# range specifiers can be set and are separated by ','
 dependencies: {}
 repository: https://github.com/0ta2/ansible_roles
 documentation: https://github.com/0ta2/ansible_roles
