@@ -7,7 +7,7 @@ authors:
 description: Ansible Rools.
 license:
 - MIT License
-license_file: ''
+license_file: 'LICENSE'
 tags:
 - collection
 dependencies: {}

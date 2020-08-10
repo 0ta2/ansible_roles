@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: "Include timezone_role"
+      include_role:
+        name: "timezone_role"

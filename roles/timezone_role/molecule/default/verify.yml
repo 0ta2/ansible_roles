@@ -1,0 +1,24 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check Installed a tzdata package.
+      package_facts:
+        manager: auto
+
+    - name: Test if tzdata package is installed.
+      assert:
+        that:
+          - "'tzdata' in ansible_facts.packages"
+      when:
+        - ansible_distribution == "Ubuntu"
+
+    - name: Check Timezone settings.
+      shell: |
+        date
+      register: "_date_settings"
+
+    - name: Test if Timezone settings.
+      assert:
+        that:
+          - "_date_settings is match('.*JST.*')"
