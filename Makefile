@@ -22,7 +22,7 @@ endef
 
 install: ## Install Galaxy roles.
 	@$(call print_title, Start to Install Galaxy)
-	@ansible-galaxy install --roles-path ./roles -r requirements.yml
+	@ansible-galaxy install --force --roles-path ./roles -r requirements.yml
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

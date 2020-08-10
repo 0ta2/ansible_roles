@@ -3,7 +3,7 @@
   version: v0.0.3
 - name: php_role
   src: https://github.com/0ta2/php_role.git
-  version: v0.0.5
+  version: v0.0.6
 - name: git_role
   src: https://github.com/0ta2/git_role.git
   version: v0.0.5
