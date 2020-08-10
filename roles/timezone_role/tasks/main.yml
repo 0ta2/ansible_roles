@@ -1,0 +1,11 @@
+---
+- name: For ubuntu, Install tzdata.
+  package:
+    name: tzdata
+    state: present
+  when:
+    - ansible_distribution == "Ubuntu"
+
+- name: Set timezone to "{{ timezone }}"
+  timezone:
+    name: "{{ timezone }}"

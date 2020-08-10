@@ -1,0 +1,10 @@
+---
+php_install_package:
+  - "php"
+
+php_packages_extra: []
+
+php_ini:
+ - { section: "Date", option: "date.timezone", value: "Asia/Tokyo" }
+
+php_enable_repo: []

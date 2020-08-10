@@ -1,0 +1,63 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Check Installed a php package.
+    package_facts:
+      manager: auto
+
+  - name: Test if php package is installed.
+    assert:
+      that:
+        - "'php' in ansible_facts.packages"
+
+#  - name: Test if php extra package is installed.
+#    assert:
+#      that:
+#        - "'{{ item }}' in ansible_facts.packages"
+#    with_items:
+#      - "php-mysql"
+#      - "php-mbstring"
+
+  - name: Get the conf.d directory path.
+    shell: |
+      set -o pipefail
+      php -i | grep -e "php.d$" -e "conf.d$" | awk '{print $9}'
+    args:
+      executable: "/bin/bash"
+    changed_when: "false"
+    register: "_php_conf_d_dir"
+
+  - name: Check 99-php.ini file.
+    stat:
+      path: "{{ _php_conf_d_dir.stdout }}/99-php.ini"
+    register: "_99_php_ini"
+
+  - name: Test if 99-php.ini file is exists.
+    assert:
+      that:
+        - _99_php_ini.stat.exists
+        - _99_php_ini.stat.isreg
+        - _99_php_ini.stat.mode == "0644"
+        - _99_php_ini.stat.gr_name == "root"
+        - _99_php_ini.stat.pw_name == "root"
+
+  - name: Check php settings.
+    shell: |
+      set -o pipefail
+      php -i | grep -e ^"{{ item.key }}" | awk '{print $NF}' | grep -e ^"{{ item.value }}"
+    args:
+      executable: "/bin/bash"
+    changed_when: "false"
+    with_items:
+      - { key: "date.timezone", value: "Asia/Tokyo" }
+    register: "_php_settings"
+
+  - name: Test if php settings.
+    assert:
+      that:
+        - "_php_settings.results.{{ index }}.rc == 0"
+    with_items: "{{ _php_settings }}"
+    loop_control:
+      index_var: index
+    when: _php_settings.results.index.rc is defined

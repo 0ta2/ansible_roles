@@ -1,0 +1,15 @@
+- name: repo_remi_role
+  src: https://github.com/0ta2/repo_remi_role.git
+  version: v0.0.3
+- name: php_role
+  src: https://github.com/0ta2/php_role.git
+  version: v0.0.5
+- name: git_role
+  src: https://github.com/0ta2/git_role.git
+  version: v0.0.5
+- name: timezone_role
+  src: https://github.com/0ta2/timezone_role.git
+  version: v0.1.1
+- name: repo_remi_role
+  src: https://github.com/0ta2/repo_remi_role.git
+  version: v0.0.3
