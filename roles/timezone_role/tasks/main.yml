@@ -1,11 +1,6 @@
 ---
-- name: For ubuntu, Install tzdata.
-  package:
-    name: tzdata
-    state: present
-  when:
-    - ansible_distribution == "Ubuntu"
+- import_tasks: Ubuntu.yml
+  when: ansible_facts['os_family'] == "Debian"
 
-- name: Set timezone to "{{ timezone }}"
-  timezone:
-    name: "{{ timezone }}"
+- import_tasks: RedHat.yml
+  when: ansible_facts['os_family'] == "RedHat"
