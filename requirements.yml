@@ -9,7 +9,7 @@
   version: v0.0.5
 - name: timezone_role
   src: https://github.com/0ta2/timezone_role.git
-  version: v0.1.1
+  version: v0.1.2
 - name: repo_remi_role
   src: https://github.com/0ta2/repo_remi_role.git
   version: v0.0.3

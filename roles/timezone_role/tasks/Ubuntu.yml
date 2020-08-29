@@ -1,0 +1,10 @@
+---
+- name: For ubuntu, Install tzdata.
+  package:
+    name: "tzdata"
+    update_cache: "yes"
+    state: "present"
+
+- name: Set timezone to "{{ timezone }}"
+  timezone:
+    name: "{{ timezone }}"
